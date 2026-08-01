@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>STP V2RAYS FREE</title>
+
+<style>
+body{
+    background:#0b0f14;
+    font-family:Arial;
+    color:white;
+}
+
+.container{
+    max-width:450px;
+    margin:50px auto;
+    padding:25px;
+    background:#111820;
+    border-radius:20px;
+    box-shadow:0 0 25px #00ff99;
+}
+
+.logo{
+    text-align:center;
+    font-size:25px;
+    font-weight:bold;
+    color:#00ff99;
+}
+
+.owner{
+    text-align:center;
+    color:#aaa;
+    margin-top:8px;
+}
+
+select,button{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    border-radius:12px;
+    border:none;
+    font-size:16px;
+}
+
+select{
+    background:#1c2630;
+    color:white;
+}
+
+button{
+    background:#00ff99;
+    color:black;
+    font-weight:bold;
+}
+
+.result{
+    margin-top:20px;
+    background:#050505;
+    padding:15px;
+    border-radius:10px;
+    color:#00ff99;
+    word-break:break-all;
+    display:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+⚡ STP V2RAYS FREE
+</div>
+
+<div class="owner">
+OWNER - SADILA KONARA
+</div>
+
+
+<select id="pkg">
+
+<option>HUTCH ZOOM</option>
+<option>DIALOG ZOOM</option>
+<option>HUTCH 292</option>
+<option>DIALOG 348</option>
+<option>DIALOG 547</option>
+<option>DIALOG 797</option>
+<option>SLT NETFLIX</option>
+
+</select>
+
+
+<button onclick="generate()">
+GENERATE V2RAY
+</button>
+
+
+<div class="result" id="output"></div>
+
+
+</div>
+
+
+
+<script>
+
+
+// Package වලට Config දාන තැන
+
+const configs = {
+
+"HUTCH ZOOM":
+"vless://4eba8bda-c263-4977-8b09-bce2b06b67d8@sg5.vpn.zentrycloud.tech:443?encryption=none&type=tcp&headerType=none&security=tls&sni=zoom.us#STP%20VPN%20TEAM",
+
+"DIALOG ZOOM":
+"vless://4eba8bda-c263-4977-8b09-bce2b06b67d8@sg5.vpn.zentrycloud.tech:443?encryption=none&type=tcp&headerType=none&security=tls&sni=aka.ms#STP%20VPN%20TEAM",
+
+"HUTCH 292":
+"vless://4eba8bda-c263-4977-8b09-bce2b06b67d8@sg5.vpn.zentrycloud.tech:443?encryption=none&type=tcp&headerType=none&security=tls&sni=t.me#STP%20VPN%20TEAM",
+
+"DIALOG 348":
+"vless://4eba8bda-c263-4977-8b09-bce2b06b67d8@sg5.vpn.zentrycloud.tech:443?encryption=none&type=tcp&headerType=none&security=tls&sni=web.whatsapp.net#STP%20VPN%20TEAM",
+
+"DIALOG 547":
+"vless://4eba8bda-c263-4977-8b09-bce2b06b67d8@sg5.vpn.zentrycloud.tech:443?encryption=none&type=tcp&headerType=none&security=tls&sni=web.whatsapp.net#STP%20VPN%20TEAM",
+
+"DIALOG 797":
+"vless://4eba8bda-c263-4977-8b09-bce2b06b67d8@sg5.vpn.zentrycloud.tech:443?encryption=none&type=tcp&headerType=none&security=tls&sni=web.whatsapp.net#STP%20VPN%20TEAM",
+
+"SLT NETFLIX":
+"vless://4eba8bda-c263-4977-8b09-bce2b06b67d8@sg5.vpn.zentrycloud.tech:443?encryption=none&type=tcp&headerType=none&security=tls&sni=netflix.com#STP%20VPN%20TEAM"
+
+};
+
+
+
+function generate(){
+
+let pkg =
+document.getElementById("pkg").value;
+
+
+let config =
+configs[pkg];
+
+
+let output =
+document.getElementById("output");
+
+
+output.style.display="block";
+
+
+output.innerHTML =
+"<b>STP V2RAYS FREE EXPIRE 2026-08.03</b><br>"+
+"Package : "+pkg+
+"<br><br>"+
+config;
+
+}
+
+
+</script>
+
+
+</body>
+</html>
