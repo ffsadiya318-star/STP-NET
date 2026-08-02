@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>⭐ STP V2RAY PREMIUM GENERATOR</title>
+<title>тнР STP V2RAY PREMIUM GENERATOR</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -699,7 +699,7 @@ body::after {
     <div class="header">
         <div class="logo-wrap">
             <span class="logo-icon"><i class="fa-solid fa-shield-halved"></i></span>
-            <span class="premium-badge-header">⭐ Premium</span>
+            <span class="premium-badge-header">тнР Premium</span>
         </div>
         <h1>STP <span>V2RAY</span> GENERATOR</h1>
         <p class="subtitle">
@@ -779,11 +779,269 @@ body::after {
         <!-- ===== SELECT ===== -->
         <div class="select-wrap">
             <select id="package">
-                <option value="HUTCH ZOOM">📱 HUTCH ZOOM</option>
-                <option value="DIALOG ZOOM">📱 DIALOG ZOOM</option>
-                <option value="HUTCH 292">📱 HUTCH 292</option>
-                <option value="DIALOG 348-547-797">📱 DIALOG 348-547-797</option>
-                <option value="SLT NETFLIX">🎬 SLT NETFLIX</option>
-                <option value="HUTCH YOUTUBE">▶️ HUTCH YOUTUBE</option>
+                <option value="HUTCH ZOOM">ЁЯУ▒ HUTCH ZOOM</option>
+                <option value="DIALOG ZOOM">ЁЯУ▒ DIALOG ZOOM</option>
+                <option value="HUTCH 292">ЁЯУ▒ HUTCH 292</option>
+                <option value="DIALOG 348-547-797">ЁЯУ▒ DIALOG 348-547-797</option>
+                <option value="SLT NETFLIX">ЁЯОм SLT NETFLIX</option>
+                <option value="HUTCH YOUTUBE">тЦ╢я╕П HUTCH YOUTUBE</option>
             </select>
-            <span class="select-icon"><i class
+            <span class="select-icon"><i class="fa-solid fa-chevron-down"></i></span>
+        </div>
+
+        <!-- ===== BUTTONS ===== -->
+        <div class="btn-group">
+            <button class="btn-generate" onclick="generate()">
+                <i class="fa-solid fa-bolt"></i> Generate
+            </button>
+            <button class="btn-copy" onclick="copyCode()" id="copyBtn">
+                <i class="fa-solid fa-copy"></i> Copy
+            </button>
+        </div>
+
+        <!-- ===== RESULT ===== -->
+        <div id="result">
+            <i class="fa-regular fa-circle-info" style="margin-right:8px;opacity:0.4;"></i>
+            Select a package &amp; click Generate
+        </div>
+
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer">
+        <p class="footer-text">
+            <i class="fa-regular fa-copyright"></i> 2026 STP VPN тАФ Made with <i class="fa-solid fa-heart"></i> for premium users
+        </p>
+        <div class="footer-links">
+            <a href="#"><i class="fa-regular fa-circle-question"></i> Help</a>
+            <a href="#"><i class="fa-regular fa-envelope"></i> Support</a>
+            <a href="#"><i class="fa-regular fa-file-lines"></i> Terms</a>
+        </div>
+    </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- JAVASCRIPT -->
+<!-- ============================================================ -->
+<script>
+
+// ============================================================
+// DATA
+// ============================================================
+
+const codes = {
+    "HUTCH ZOOM": "vless://4eba8bda-c263-4977-8b09-bce2b06b67d8@sg5.vpn.zentrycloud.tech:443?encryption=none&type=tcp&headerType=none&security=tls&sni=zoom.us#STP%20VPN%20TEAM",
+    "DIALOG ZOOM": "vless://4eba8bda-c263-4977-8b09-bce2b06b67d8@sg5.vpn.zentrycloud.tech:443?encryption=none&type=tcp&headerType=none&security=tls&sni=aka.ms#STP%20VPN%20TEAM",
+    "HUTCH 292": "vless://4eba8bda-c263-4977-8b09-bce2b06b67d8@sg5.vpn.zentrycloud.tech:443?encryption=none&type=tcp&headerType=none&security=tls&sni=t.me#STP%20VPN%20TEAM",
+    "DIALOG 348-547-797": "vless://4eba8bda-c263-4977-8b09-bce2b06b67d8@sg5.vpn.zentrycloud.tech:443?encryption=none&type=tcp&headerType=none&security=tls&sni=web.whatsapp.net#STP%20VPN%20TEAM",
+    "SLT NETFLIX": "vless://4eba8bda-c263-4977-8b09-bce2b06b67d8@sg5.vpn.zentrycloud.tech:443?encryption=none&type=tcp&headerType=none&security=tls&sni=netflix.com#STP%20VPN%20TEAM",
+    "HUTCH YOUTUBE": "vless://4eba8bda-c263-4977-8b09-bce2b06b67d8@sg5.vpn.zentrycloud.tech:443?encryption=none&type=tcp&headerType=none&security=tls&sni=youtube.com#STP%20VPN%20TEAM"
+};
+
+// CONFIGURATION - Edit these values
+const CONFIG = {
+    expireDate: "2026.08.05",
+    usageUsed: 1.05,
+    usageTotal: 2.0,
+    plan: "Ultimate",
+    speed: "1 Gbps"
+};
+
+// ============================================================
+// DOM REFS
+// ============================================================
+
+const resultDiv = document.getElementById('result');
+const packageSelect = document.getElementById('package');
+const displayExpire = document.getElementById('displayExpire');
+const usageUsed = document.getElementById('usageUsed');
+const usageTotal = document.getElementById('usageTotal');
+const usageFill = document.getElementById('usageFill');
+const usagePercent = document.getElementById('usagePercent');
+const statusDisplay = document.getElementById('statusDisplay');
+const copyBtn = document.getElementById('copyBtn');
+const themeToggle = document.getElementById('themeToggle');
+
+// ============================================================
+// THEME TOGGLE
+// ============================================================
+
+let currentTheme = localStorage.getItem('theme') || 'dark';
+
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    currentTheme = theme;
+    localStorage.setItem('theme', theme);
+    
+    const icon = themeToggle.querySelector('i');
+    if (theme === 'dark') {
+        icon.className = 'fa-regular fa-moon';
+    } else {
+        icon.className = 'fa-regular fa-sun';
+    }
+}
+
+themeToggle.addEventListener('click', () => {
+    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+});
+
+// ============================================================
+// TOAST
+// ============================================================
+
+function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toastMessage');
+    const icon = toast.querySelector('i');
+    
+    toastMsg.textContent = message;
+    toast.className = 'toast';
+    toast.classList.add(type);
+    
+    icon.className = 'fa-regular';
+    if (type === 'success') icon.className += ' fa-circle-check';
+    else if (type === 'error') icon.className += ' fa-circle-xmark';
+    else icon.className += ' fa-circle-info';
+    
+    toast.classList.add('show');
+    clearTimeout(toast._timeout);
+    toast._timeout = setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// ============================================================
+// UPDATE FUNCTIONS
+// ============================================================
+
+function updateUsage(used, total) {
+    const percent = (used / total) * 100;
+    const clamped = Math.min(percent, 100);
+    
+    usageFill.style.width = clamped + '%';
+    usagePercent.textContent = clamped.toFixed(1) + '%';
+    usageUsed.textContent = used.toFixed(2);
+    usageTotal.textContent = total.toFixed(1);
+    
+    usageFill.classList.remove('green', 'orange', 'red', 'purple');
+    if (clamped > 85) usageFill.classList.add('red');
+    else if (clamped > 65) usageFill.classList.add('orange');
+    else usageFill.classList.add('green');
+}
+
+function updateStatus() {
+    const dateStr = CONFIG.expireDate;
+    const parts = dateStr.split('.');
+    if (parts.length === 3) {
+        const expire = new Date(parts[0], parts[1] - 1, parts[2]);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        
+        if (expire < today) {
+            statusDisplay.innerHTML = `
+                <i class="fa-regular fa-circle-xmark" style="font-size:14px;color:#f87171;"></i>
+                <span style="color:#f87171;">Expired</span>
+            `;
+        } else {
+            const days = Math.ceil((expire - today) / (1000*60*60*24));
+            statusDisplay.innerHTML = `
+                <i class="fa-regular fa-circle-check" style="font-size:14px;color:#34d399;"></i>
+                <span style="color:#34d399;">${days} days left</span>
+            `;
+        }
+    }
+}
+
+// ============================================================
+// GENERATE
+// ============================================================
+
+function generate() {
+    const pkg = packageSelect.value;
+    const code = codes[pkg];
+    
+    if (!code) {
+        resultDiv.innerHTML = '<i class="fa-regular fa-circle-xmark" style="color:#f87171;"></i> Package not found!';
+        resultDiv.classList.remove('has-code');
+        return;
+    }
+    
+    resultDiv.innerHTML = `
+        <div class="code-text">${code}</div>
+        <div class="tags">
+            <span class="tag tag-expire">
+                <i class="fa-regular fa-calendar-circle-exclamation"></i> ${CONFIG.expireDate}
+            </span>
+            <span class="tag tag-usage">
+                <i class="fa-solid fa-crown" style="color:#f59e0b;"></i> ${CONFIG.usageUsed}TB / ${CONFIG.usageTotal}TB
+            </span>
+            <span class="tag tag-premium">
+                <i class="fa-regular fa-star"></i> Premium
+            </span>
+            <span class="tag tag-status">
+                <i class="fa-regular fa-circle-check"></i> Active
+            </span>
+        </div>
+    `;
+    resultDiv.classList.add('has-code');
+    
+    copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
+    copyBtn.classList.remove('copied');
+    
+    showToast('тЬЕ Code generated successfully!', 'success');
+}
+
+// ============================================================
+// COPY
+// ============================================================
+
+function copyCode() {
+    const text = resultDiv.innerText;
+    
+    if (!resultDiv.classList.contains('has-code') || text.includes('Select a package')) {
+        showToast('тЪая╕П Please generate a code first!', 'error');
+        return;
+    }
+    
+    const vlessMatch = text.match(/vless:\/\/[^\s]+/);
+    const cleanText = vlessMatch ? vlessMatch[0] : text.replace(/[^\x00-\x7F]/g, '').trim();
+    
+    navigator.clipboard.writeText(cleanText).then(() => {
+        copyBtn.innerHTML = '<i class="fa-regular fa-check"></i> Copied!';
+        copyBtn.classList.add('copied');
+        showToast('ЁЯУЛ Copied to clipboard!', 'success');
+        setTimeout(() => {
+            copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
+            copyBtn.classList.remove('copied');
+        }, 2500);
+    }).catch(() => {
+        showToast('тМия╕П Press Ctrl+C to copy manually', 'info');
+    });
+}
+
+// ============================================================
+// KEYBOARD SHORTCUT
+// ============================================================
+
+packageSelect.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') generate();
+});
+
+// ============================================================
+// INIT
+// ============================================================
+
+displayExpire.textContent = CONFIG.expireDate;
+updateUsage(CONFIG.usageUsed, CONFIG.usageTotal);
+updateStatus();
+setTheme(currentTheme);
+
+// Auto-generate on load
+setTimeout(generate, 400);
+
+console.log('тнР STP V2RAY PREMIUM GENERATOR loaded!');
+console.log('ЁЯУЕ Expire:', CONFIG.expireDate);
+console.log('ЁЯУК Usage:', CONFIG.usageUsed, 'TB /', CONFIG.usageTotal, 'TB');
+
+</script>
+</body>
+</html>
