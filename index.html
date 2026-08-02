@@ -842,8 +842,8 @@ const codes = {
 // CONFIGURATION - Edit these values
 const CONFIG = {
     expireDate: "2026.08.03",
-    usageUsed: 1.05,
-    usageTotal: 2.0,
+    usageUsed: 2.25,
+    usageTotal:10.0,
     plan: "Ultimate",
     speed: "1 Gbps"
 };
@@ -998,7 +998,7 @@ function copyCode() {
     const text = resultDiv.innerText;
     
     if (!resultDiv.classList.contains('has-code') || text.includes('Select a package')) {
-        showToast('тЪая╕П Please generate a code first!', 'error');
+        showToast('Please generate a code first!', 'error');
         return;
     }
     
@@ -1008,13 +1008,13 @@ function copyCode() {
     navigator.clipboard.writeText(cleanText).then(() => {
         copyBtn.innerHTML = '<i class="fa-regular fa-check"></i> Copied!';
         copyBtn.classList.add('copied');
-        showToast('ЁЯУЛ Copied to clipboard!', 'success');
+        showToast('Copied to clipboard!', 'success');
         setTimeout(() => {
             copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
             copyBtn.classList.remove('copied');
         }, 2500);
     }).catch(() => {
-        showToast('тМия╕П Press Ctrl+C to copy manually', 'info');
+        showToast('Press Ctrl+C to copy manually', 'info');
     });
 }
 
